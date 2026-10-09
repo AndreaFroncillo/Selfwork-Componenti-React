@@ -7,12 +7,12 @@ export default function List({ pokemon }) {
 
                 {pokemon.map((pokemon) => {
                     return (
-                        <div className="col-12 col-md-4">
+                        <div key={pokemon.id} className="col-12 col-md-4">
                             <div className="card h-100">
                                 <img
                                     src={pokemon.image}
                                     className="card-img-top"
-                                    alt="Bulbasaur"
+                                    alt={pokemon.name}
                                 />
 
                                 <div className="card-body">
@@ -34,12 +34,10 @@ export default function List({ pokemon }) {
 
                                         {pokemon.moves.map((move) => {
                                             return (
-                                                <>
-                                                    <li className="fw-bold">
-                                                        {move.name}:
-                                                    </li>
+                                                <li key={move.name}>
+                                                    <strong>{move.name}:</strong>
                                                     <p>{move.description}</p>
-                                                </>
+                                                </li>
                                             );
                                         })}
                                     </ul>
