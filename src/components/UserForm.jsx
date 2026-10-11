@@ -1,6 +1,6 @@
 export default function UserForm() {
     return (
-        <div>
+      <div>
         <h1 className="title-custom">Il mio primo esercizio React</h1>
 
         <label htmlFor="userName" className="label-custom">

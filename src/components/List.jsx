@@ -49,7 +49,7 @@ export default function List({ pokemon }) {
                             </div>
                         </div>
                     )
-                })};
+                })}
             </div>
         </div>
     )

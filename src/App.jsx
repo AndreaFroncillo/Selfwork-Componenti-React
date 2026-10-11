@@ -1,7 +1,8 @@
+import Counter from "./components/Counter";
+import Form from "./components/Form";
 import Header from "./components/Header";
 import List from "./components/List";
 import Navbar from "./components/Navbar";
-import UserForm from "./components/UserForm";
 
 function App() {
 
@@ -131,7 +132,8 @@ function App() {
       <Navbar />
       <Header />
       <List pokemon={pokemon}/>
-      <UserForm />
+      <Counter />
+      <Form />
     </>
   )
 }
