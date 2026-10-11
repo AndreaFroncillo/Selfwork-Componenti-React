@@ -1,56 +1,15 @@
-export default function List({ pokemon }) {
+import Card from "./Card";
+import EvolutionCard from "./EvolutionCard";
 
-    console.log(pokemon);
+export default function List({ children }) {
     return (
         <div className="container my-5">
-            <div className="row">
-
-                {pokemon.map((pokemon) => {
-                    return (
-                        <div key={pokemon.id} className="col-12 col-md-4">
-                            <div className="card h-100">
-                                <img
-                                    src={pokemon.image}
-                                    className="card-img-top"
-                                    alt={pokemon.name}
-                                />
-
-                                <div className="card-body">
-                                    <h3 className="card-title fw-bold">
-                                        {pokemon.name}
-                                    </h3>
-
-                                    <p className="card-text">
-                                        <strong>Tipo:</strong> {pokemon.type}
-                                    </p>
-
-                                    <p className="card-text">
-                                        {pokemon.description}
-                                    </p>
-
-                                    <h5>Mosse</h5>
-
-                                    <ul>
-
-                                        {pokemon.moves.map((move) => {
-                                            return (
-                                                <li key={move.name}>
-                                                    <strong>{move.name}:</strong>
-                                                    <p>{move.description}</p>
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-
-                                    <button className="btn btn-primary">
-                                        Evoluzioni
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
+            <div className="row g-4">
+                {children}
             </div>
         </div>
-    )
+    );
 }
+
+List.Card = Card;
+List.EvolutionCard = EvolutionCard;

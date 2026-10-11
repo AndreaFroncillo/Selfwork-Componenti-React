@@ -1,3 +1,6 @@
+
+import { useState } from "react";
+
 import Counter from "./components/Counter";
 import Form from "./components/Form";
 import Header from "./components/Header";
@@ -126,16 +129,118 @@ function App() {
     }
   ];
 
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  const showEvolutions = (pokemon) => {
+    if (selectedPokemon !== null && selectedPokemon.id === pokemon.id) {
+      setSelectedPokemon(null);
+    } else {
+      setSelectedPokemon(pokemon);
+    }
+  }
+
+  let evolutionCards = null;
+
+  if (selectedPokemon !== null) {
+    evolutionCards = (
+      <div className="row justify-content-center g-4 mt-3">
+        {selectedPokemon.evolutions.map((evolution) => {
+          return (
+            <List.EvolutionCard
+              key={evolution.id}
+              evolution={evolution}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [isShowed, setIsShowed] = useState(false);
+
+  const handleName = (onChange) => {
+    setName(onChange.target.value);
+  }
+
+  const handleMail = (onChange) => {
+    setMail(onChange.target.value);
+  }
+
+  const showData = (onSubmit) => {
+    onSubmit.preventDefault();
+    setIsShowed(true);
+  }
+
+  const hiddenData = () => {
+    setIsShowed(false);
+  }
+
+  let userCard = null;
+
+  if (isShowed === true) {
+    userCard = (
+      <Form.UserCard
+        name={name}
+        mail={mail}
+        onclick={hiddenData}
+      />
+    );
+  }
 
   return (
     <>
       <Navbar />
       <Header />
-      <List pokemon={pokemon}/>
+
+      <List>
+        {pokemon.map((item) => {
+          return (
+            <List.Card
+              key={item.id}
+              pokemon={item}
+              onclick={() => showEvolutions(item)}
+            />
+          );
+        })}
+      </List>
+
+      <div className="container mb-5">
+        {evolutionCards}
+      </div>
+
       <Counter />
-      <Form />
+
+      <Form onsubmit={showData}>
+
+        <Form.Input
+          id="name"
+          type="text"
+          label="Nome Utente"
+          placeholder="Inserisci il tuo nome"
+          onchange={handleName}
+        />
+
+        <Form.Input
+          id="email"
+          type="email"
+          label="Email"
+          placeholder="Inserisci la tua email"
+          onchange={handleMail}
+        />
+
+        <Form.Button type="submit">
+          Invia
+        </Form.Button>
+
+      </Form>
+
+      <div className="container mb-5">
+        {userCard}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
