@@ -6,6 +6,7 @@ import Form from "./components/Form";
 import Header from "./components/Header";
 import List from "./components/List";
 import Navbar from "./components/Navbar";
+import LoadingData from "./components/LoadingData";
 
 function App() {
 
@@ -239,6 +240,8 @@ function App() {
       <div className="container mb-5">
         {userCard}
       </div>
+
+      <LoadingData />
     </>
   );
 }
