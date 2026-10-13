@@ -5,10 +5,16 @@ export default function Navbar() {
         <nav id="nav_custom">
             <ul className="ul-custom">
                 <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
                     <Link to="/posts">Post</Link>
                 </li>
-                 <li>
-                    <Link to="/">Pokedex</Link>
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+                <li>
+                    <Link to="/register">Registrati</Link>
                 </li>
             </ul>
         </nav>

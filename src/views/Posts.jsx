@@ -1,21 +1,8 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 export default function Posts() {
 
-    const [posts, setPosts] = useState();
-
-    useEffect(
-        () => {
-            const getData = async () => {
-                const promise = await fetch('https://jsonplaceholder.typicode.com/posts');
-                const json = await promise.json();
-                setPosts(json);
-            }
-
-            getData();
-        }, []
-    )
+    const posts = useLoaderData();
 
     return (
         <>
@@ -25,7 +12,7 @@ export default function Posts() {
                 <h2 className="mb-4">Lista dei post:</h2>
 
                 <ul className="list-group">
-                    {posts && posts.map((post) => {
+                    {posts.map((post) => {
                         return (
                             <li key={post.id} className="list-group-item d-flex justify-content-between align-items-center gap-3">
                                 <span>{post.title}</span>
