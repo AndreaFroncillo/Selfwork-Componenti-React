@@ -1,12 +1,14 @@
+import { Link } from "react-router";
+
 export default function Navbar() {
     return (
         <nav id="nav_custom">
             <ul className="ul-custom">
                 <li>
-                    <a href="#">Torna su</a>
+                    <Link to="/posts">Post</Link>
                 </li>
                  <li>
-                    <a href="#">Pokedex</a>
+                    <Link to="/">Pokedex</Link>
                 </li>
             </ul>
         </nav>
