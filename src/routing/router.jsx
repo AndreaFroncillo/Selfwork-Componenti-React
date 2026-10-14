@@ -6,6 +6,7 @@ import { getAllPostsLoader, getSinglePostLoader } from "./loaders";
 import Detail from "../views/Detail";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const router = createBrowserRouter([
     {
@@ -18,12 +19,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/posts',
-                Component: Posts,
+                element: (
+                    <ProtectedRoute>
+                        <Posts />
+                    </ProtectedRoute>
+                ),
                 loader: getAllPostsLoader
             },
             {
-                path: '/posts/:id',
-                Component: Detail,
+                path: "/posts/:id",
+                element: (
+                    <ProtectedRoute>
+                        <Detail />
+                    </ProtectedRoute>
+                ),
                 loader: getSinglePostLoader
             },
             {
