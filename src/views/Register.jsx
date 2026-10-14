@@ -1,5 +1,37 @@
 
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { UserContext } from "../context/UserContext";
+
 export default function Register() {
+
+    const { register } = useContext(UserContext);
+
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        if (e.target.id === "name") {
+            setUserName(e.target.value);
+        } else if (e.target.id === "registerEmail") {
+            setUserEmail(e.target.value);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (userName && userEmail) {
+            register({
+                name: userName,
+                email: userEmail
+            });
+
+            navigate("/");
+        }
+    };
 
     return (
         <>
@@ -10,7 +42,7 @@ export default function Register() {
                     <div className="col-12 col-md-6">
                         <div className="card shadow-sm">
                             <div className="card-body">
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="mb-3">
                                         <label htmlFor="name" className="form-label">Nome</label>
                                         <input
@@ -18,6 +50,7 @@ export default function Register() {
                                             className="form-control"
                                             id="name"
                                             placeholder="Inserisci il tuo nome"
+                                            onChange={handleChange}
                                         />
                                     </div>
 
@@ -28,30 +61,11 @@ export default function Register() {
                                             className="form-control"
                                             id="registerEmail"
                                             placeholder="Inserisci la tua email"
+                                            onChange={handleChange}
                                         />
                                     </div>
 
-                                    <div className="mb-3">
-                                        <label htmlFor="registerPassword" className="form-label">Password</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            id="registerPassword"
-                                            placeholder="Inserisci una password"
-                                        />
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <label htmlFor="confirmPassword" className="form-label">Conferma password</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            id="confirmPassword"
-                                            placeholder="Conferma la password"
-                                        />
-                                    </div>
-
-                                    <button type="button" className="btn btn-primary">
+                                    <button type="submit" className="btn btn-primary">
                                         Registrati
                                     </button>
                                 </form>
@@ -61,5 +75,5 @@ export default function Register() {
                 </div>
             </div>
         </>
-    )
+    );
 }
