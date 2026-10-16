@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import Homepage from '../views/Homepage';
-import Posts from '../views/Posts';
+import Posts from '../views/Posts/Posts';
 import Layout from '../components/Layout';
 import { getAllPostsLoader, getSinglePostLoader } from "./loaders";
-import Detail from "../views/Detail";
-import Login from "../views/Login";
-import Register from "../views/Register";
+import Detail from "../views/Posts/Detail";
+import Login from "../views/Auth/Login";
+import Register from "../views/Auth/Register";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const router = createBrowserRouter([

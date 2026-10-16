@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import Counter from "../components/Counter";
-import Form from "../components/Form";
-import Header from "../components/Header";
-import List from "../components/List";
-import LoadingData from "../components/LoadingData";
+import Counter from "../components/Counter/Counter";
+import Form from "../components/Form/Form";
+import Header from "../components/Header/Header";
+import List from "../components/Pokemon/List";
+import LoadingData from "../components/LoadingData/LoadingData";
 
 export default function Homepage() {
 
@@ -140,20 +140,29 @@ export default function Homepage() {
 
     let evolutionCards = null;
 
+
     if (selectedPokemon !== null) {
         evolutionCards = (
-            <div className="row justify-content-center g-4 mt-3">
-                {selectedPokemon.evolutions.map((evolution) => {
-                    return (
-                        <List.EvolutionCard
-                            key={evolution.id}
-                            evolution={evolution}
-                        />
-                    );
-                })}
+            <div className="mx-auto mt-8 max-w-5xl">
+
+                <h2 className="mb-6 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                    Evoluzioni di {selectedPokemon.name}
+                </h2>
+
+                <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
+                    {selectedPokemon.evolutions.map((evolution) => {
+                        return (
+                            <List.EvolutionCard
+                                key={evolution.id}
+                                evolution={evolution}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         );
     }
+
 
     const [name, setName] = useState("");
     const [mail, setMail] = useState("");
@@ -192,19 +201,21 @@ export default function Homepage() {
         <>
             <Header />
 
-            <List>
-                {pokemon.map((item) => {
-                    return (
-                        <List.Card
-                            key={item.id}
-                            pokemon={item}
-                            onclick={() => showEvolutions(item)}
-                        />
-                    );
-                })}
-            </List>
+            <section id="pokemon-section" className="scroll-mt-32">
+                <List>
+                    {pokemon.map((item) => {
+                        return (
+                            <List.Card
+                                key={item.id}
+                                pokemon={item}
+                                onclick={() => showEvolutions(item)}
+                            />
+                        );
+                    })}
+                </List>
+            </section>
 
-            <div className="container mb-5">
+            <div className="mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
                 {evolutionCards}
             </div>
 
@@ -234,7 +245,7 @@ export default function Homepage() {
 
             </Form>
 
-            <div className="container mb-5">
+            <div className="mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
                 {userCard}
             </div>
 
